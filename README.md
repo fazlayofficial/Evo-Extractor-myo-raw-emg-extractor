@@ -1,67 +1,76 @@
-# Evo_Extractor: Raw EMG Data Acquisition Framework for Myo Armband
+# Evo_Extractor: A Framework for High-Fidelity sEMG Signal Acquisition
+**Research Prototype for Neuromuscular Signal Processing and Edge AI**
 
-[![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
 [![Status](https://img.shields.io/badge/Status-Research_Prototype-orange.svg)]()
-[![IEEE](https://img.shields.io/badge/IEEE-ICEEIE_2025-green.svg)](https://doi.org/10.1109/ICEEIE66203.2025.11252161)
+[![IEEE Publication](https://img.shields.io/badge/IEEE-ICEEIE_2025-green.svg)](https://doi.org/10.1109/ICEEIE66203.2025.11252161)
 
-**Authors:** Fazlay Rabby, Md. Rifat Aknda  
-**Institution:** Evomed Technology  
-
----
-
-## Abstract
-
-Evo_Extractor is a research-grade software framework designed to facilitate high-fidelity electromyography (EMG) signal acquisition from the Myo Armband via Bluetooth Low Energy (BLE) protocol. This tool bypasses the manufacturer's preprocessing pipeline to provide direct access to raw analog-to-digital converter (ADC) outputs, enabling researchers to perform custom signal processing and feature extraction without proprietary filtering artifacts.
-
-The framework supports real-time data visualization, structured data logging in CSV format, and includes an experimental keyboard mapping interface for human-computer interaction (HCI) applications. This implementation was developed to support our work on scalable gesture recognition using hybrid deep learning architectures.
+**Principal Developer:** Fazlay Rabby  
+**Co-Developer:** Md. Rifat Aknda  
+**Affiliation:** Evomed Technology / Department of EEE, ULAB  
 
 ---
 
-## Technical Specifications
+## 1. Abstract
+The **Evo_Extractor** framework addresses a critical limitation in consumer-grade wearable electromyography (EMG) devices: the presence of proprietary, non-deterministic preprocessing artifacts. By bypassing the standard manufacturer SDKs and interfacing directly with the Myo Armband via the Bluetooth Low Energy (BLE) GATT profile, this system facilitates the extraction of raw 8-bit Analog-to-Digital Converter (ADC) values. 
 
-### Signal Acquisition
-- **Data Source:** Myo Armband (8-channel dry electrode system)
-- **ADC Resolution:** 8-bit signed integer (-128 to 127)
-- **Sampling Frequency:** 200 Hz per channel
-- **Communication Protocol:** Bluetooth Low Energy (BLE) 4.0+
-- **Data Format:** Unfiltered, unprocessed ADC values
-
-### Software Architecture
-- **Language:** Python 3.11+
-- **Core Dependencies:** `bleak` (BLE communication), `numpy` (signal processing), `matplotlib` (visualization)
-- **Deployment:** Standalone executable via PyInstaller for Windows x64
+This tool serves as the foundational data pipeline for our research into **Scalable Hand Gesture Recognition**, providing the high-fidelity time-series data required for training hybrid Deep Learning architectures (CNN-BiLSTM-Attention) targeting low-power edge deployment.
 
 ---
 
-## Key Features
+## 2. Technical Specifications
 
-### 1. Direct ADC Access
-Unlike consumer-facing applications that apply proprietary smoothing and filtering, Evo_Extractor extracts raw 8-bit signed integer values directly from the device's analog-to-digital converter.
+### 2.1 Signal Acquisition Protocol
+* **Sensor Topology:** 8-channel dry electrode surface EMG (sEMG).
+* **Data Integrity:** Direct access to raw signed 8-bit integers (Range: -128 to 127).
+* **Temporal Resolution:** Sustained 200 Hz sampling frequency per channel, synchronized via Unix epoch timestamps.
+* **Communication Layer:** Implemented using the `bleak` asynchronous BLE library for direct characteristic notification handling.
 
-### 2. High-Frequency Data Logging
-The system maintains a stable 200 Hz sampling rate across all eight channels, with timestamps synchronized to the system clock. Data is exported to CSV for batch processing in MATLAB, Python, or R.
-
-### 3. Real-Time Visualization
-Multi-channel time-series visualization enables immediate verification of signal quality and electrode contact during data collection.
+### 2.2 Software Architecture
+* **Language:** Python 3.11+
+* **Core Dependencies:** `bleak` (BLE communication), `numpy` (signal processing), `matplotlib` (visualization).
+* **Deployment:** Standalone executable via PyInstaller for Windows x64.
 
 ---
 
-## Citation
+## 🖥️ User Interface Gallery
 
-If you use this software or the associated research in your work, please cite it as follows:
+### 1. Welcome & Setup
+The initial screen guides users to perform a scan and establish a handshake protocol with the target BLE peripheral (Myo MAC: `E7:0D:8C:7F:69:84`).
+![Welcome Interface](Images/Image1.png)
 
-### IEEE Format
-F. Rabby, R. Das, Md. M. Rahman, Md. H. Hossain, and Md. R. Aknda, "Scalable Hand Gesture Recognition from Surface Electromyography (sEMG) Signals Using a Hybrid Deep Learning Model Evaluated on Diverse Datasets," in *Proc. 2025 9th International Conference On Electrical, Electronics And Information Engineering (ICEEIE)*, Sep. 2025, pp. 1-6, doi: 10.1109/ICEEIE66203.2025.11252161.
+### 2. Main Control Dashboard (Marked)
+The primary control dashboard allows for granular hardware orchestration, including dynamic battery telemetry and haptic feedback verification.
+![App Functions Marked](Images/Image2.png)
 
-### BibTeX
+### 3. Real-Time EMG Visualization
+Crucial for identifying motion artifacts and electrode displacement, providing a live 8-channel stream at 200 Hz.
+![Data Visualization](Images/Image3.png)
+
+---
+
+## 3. Research Applications
+This framework is currently utilized in the following academic domains:
+1.  **Biomedical Signal Processing:** Implementing custom digital filters (Butterworth, Notch) without manufacturer interference.
+2.  **Pattern Recognition:** Generating labeled datasets for supervised learning in prosthetic control.
+3.  **Human-Computer Interaction (HCI):** Developing low-latency assistive technologies, such as gesture-controlled wheelchairs.
+
+---
+
+## 4. Scholarly Citation
+
+If this framework or the associated data collection methodology is utilized in your research, please cite the following IEEE publication:
+
+**IEEE Format:**
+> F. Rabby, R. Das, Md. M. Rahman, Md. H. Hossain, and Md. R. Aknda, "Scalable Hand Gesture Recognition from Surface Electromyography (sEMG) Signals Using a Hybrid Deep Learning Model Evaluated on Diverse Datasets," in *Proc. 2025 9th International Conference On Electrical, Electronics And Information Engineering (ICEEIE)*, Sep. 2025, pp. 1-6, doi: 10.1109/ICEEIE66203.2025.11252161.
+
+**BibTeX:**
 ```bibtex
 @INPROCEEDINGS{11252161,
   author={Rabby, Fazlay and Das, Rajdeep and Rahman, Md. Musfiqur and Hossain, Md. Hridoy and Aknda, Md. Rifat},
   booktitle={2025 9th International Conference On Electrical, Electronics And Information Engineering (ICEEIE)}, 
   title={Scalable Hand Gesture Recognition from Surface Electromyography (sEMG) Signals Using a Hybrid Deep Learning Model Evaluated on Diverse Datasets}, 
   year={2025},
-  volume={},
-  number={},
   pages={1-6},
   doi={10.1109/ICEEIE66203.2025.11252161},
   month={Sep.},
