@@ -36,155 +36,33 @@ The framework supports real-time data visualization, structured data logging in 
 ## Key Features
 
 ### 1. Direct ADC Access
-Unlike consumer-facing applications that apply proprietary smoothing and filtering, Evo_Extractor extracts raw 8-bit signed integer values directly from the device's analog-to-digital converter. This ensures that researchers have complete control over preprocessing pipelines and can implement custom filtering strategies appropriate to their experimental paradigm.
+Unlike consumer-facing applications that apply proprietary smoothing and filtering, Evo_Extractor extracts raw 8-bit signed integer values directly from the device's analog-to-digital converter.
 
 ### 2. High-Frequency Data Logging
-The system maintains a stable 200 Hz sampling rate across all eight channels, with timestamps synchronized to system clock. Data is automatically exported to CSV files with user-defined profile metadata, facilitating batch processing in MATLAB, Python (NumPy/Pandas), or R.
+The system maintains a stable 200 Hz sampling rate across all eight channels, with timestamps synchronized to the system clock. Data is exported to CSV for batch processing in MATLAB, Python, or R.
 
 ### 3. Real-Time Visualization
-Multi-channel time-series visualization using Matplotlib enables immediate verification of signal quality, electrode contact, and motion artifacts during data collection sessions.
-
-### 4. Profile-Based Data Management
-The framework implements a session management system allowing researchers to organize data collection by participant, experimental condition, or gesture class. Each profile generates separate CSV files with consistent formatting for downstream analysis.
-
-### 5. Experimental HCI Module
-An optional keyboard mapping subsystem translates EMG activity into discrete keyboard events, enabling preliminary testing of control paradigms for assistive technologies or prosthetic interfaces.
-
----
-
-## Installation
-
-### Prerequisites
-- Python 3.11 or later
-- Windows 10/11 (64-bit) for executable deployment
-- Myo Armband with compatible Bluetooth 4.0+ adapter
-- Development: Visual Studio Code (recommended)
-
-### Option A: Binary Distribution (Recommended for End Users)
-
-1. Navigate to the [Releases](../../releases) page
-2. Download `Evo_Extractor_v1.0_Win64.zip`
-3. Extract archive and execute `Evo_Extractor.exe`
-4. No Python installation or dependency management required
-
-### Option B: Source Installation (For Developers)
-
-#### Automated Setup
-```bash
-git clone https://github.com/fazlayofficial/Evo-Extractor-Myo-EMG.git
-cd Evo-Extractor-Myo-EMG
-setup_env.bat
-python app.py
-```
-
-#### Manual Configuration
-```powershell
-# Create isolated Python environment
-python -m venv .venv
-
-# Configure execution policy (Windows only)
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-
-# Activate virtual environment
-.venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Launch application
-python app.py
-```
-
----
-
-## Data Structure
-
-### CSV Output Format
-
-| Column | Data Type | Range | Description |
-|--------|-----------|-------|-------------|
-| Timestamp | float64 | N/A | Unix epoch time (seconds) |
-| Channel_1 | int8 | [-128, 127] | EMG sensor pod 1 (proximal) |
-| Channel_2 | int8 | [-128, 127] | EMG sensor pod 2 |
-| ... | ... | ... | ... |
-| Channel_8 | int8 | [-128, 127] | EMG sensor pod 8 (distal) |
-| Label | string | N/A | User-defined gesture class or key event |
-
-**Important Notes:**
-- Values represent raw ADC output with no normalization
-- No bandpass filtering, notch filtering, or rectification applied
-- Researchers should implement appropriate preprocessing based on experimental requirements
-
----
-
-## Research Applications
-
-This framework is designed to support research in:
-
-1. **Biomedical Signal Processing:** Development and validation of novel EMG processing algorithms
-2. **Pattern Recognition:** Training datasets for supervised learning of gesture classification models
-3. **Human-Computer Interaction:** Prototyping EMG-based control interfaces
-4. **Assistive Technology:** Data collection for prosthetic control systems or wheelchair interfaces
-5. **Neuromuscular Research:** Analysis of muscle activation patterns and motor unit recruitment
-
----
-
-## Building from Source
-
-To compile the standalone Windows executable:
-
-```bash
-build_exe.bat
-```
-
-The executable will be generated in the `dist/` directory. The build script automatically bundles required assets (`logo.png`, `powered_by.png`) and Python dependencies.
+Multi-channel time-series visualization enables immediate verification of signal quality and electrode contact during data collection.
 
 ---
 
 ## Citation
 
-This software was developed to support our research on scalable hand gesture recognition using hybrid deep learning models. If you use this tool in your research, please cite:
+If you use this software or the associated research in your work, please cite it as follows:
 
-### IEEE Citation Format
-F. Rabby, R. Das, Md. M. Rahman, Md. H. Hossain, and Md. R. Aknda, "Scalable Hand Gesture Recognition from Surface Electromyography (sEMG) Signals Using a Hybrid Deep Learning Model Evaluated on Diverse Datasets," in *Proc. IEEE Int. Conf. Electrical, Electronics and Information Engineering (ICEEIE)*, Sep. 2025, doi: 10.1109/ICEEIE66203.2025.11252161.
+### IEEE Format
+F. Rabby, R. Das, Md. M. Rahman, Md. H. Hossain, and Md. R. Aknda, "Scalable Hand Gesture Recognition from Surface Electromyography (sEMG) Signals Using a Hybrid Deep Learning Model Evaluated on Diverse Datasets," in *Proc. 2025 9th International Conference On Electrical, Electronics And Information Engineering (ICEEIE)*, Sep. 2025, pp. 1-6, doi: 10.1109/ICEEIE66203.2025.11252161.
 
 ### BibTeX
 ```bibtex
-@inproceedings{rabby2025scalable,
-  title={Scalable Hand Gesture Recognition from Surface Electromyography (sEMG) Signals Using a Hybrid Deep Learning Model Evaluated on Diverse Datasets},
+@INPROCEEDINGS{11252161,
   author={Rabby, Fazlay and Das, Rajdeep and Rahman, Md. Musfiqur and Hossain, Md. Hridoy and Aknda, Md. Rifat},
-  booktitle={2025 IEEE International Conference on Electrical, Electronics and Information Engineering (ICEEIE)},
+  booktitle={2025 9th International Conference On Electrical, Electronics And Information Engineering (ICEEIE)}, 
+  title={Scalable Hand Gesture Recognition from Surface Electromyography (sEMG) Signals Using a Hybrid Deep Learning Model Evaluated on Diverse Datasets}, 
   year={2025},
+  volume={},
+  number={},
+  pages={1-6},
+  doi={10.1109/ICEEIE66203.2025.11252161},
   month={Sep.},
-  publisher={IEEE},
-  doi={10.1109/ICEEIE66203.2025.11252161}
 }
-```
-
----
-
-## Contributors
-
-- **Fazlay Rabby** – Primary Developer, System Architecture | [GitHub](https://github.com/fazlayofficial)
-- **Md. Rifat Aknda** – Co-Developer, Signal Processing Module
-
----
-
-## License & Distribution
-
-This software is released as open-source research code. Users are free to modify and redistribute the code with appropriate attribution. For commercial applications or licensing inquiries, please contact the authors.
-
----
-
-## Support & Contribution
-
-We welcome contributions from the research community. To report issues or suggest enhancements:
-
-1. Open an issue in the [GitHub Issue Tracker](../../issues)
-2. Submit pull requests with detailed descriptions of changes
-3. For research collaborations, contact via institutional email
-
----
-
-**Powered by Evomed Technology**  
-*Advancing biomedical signal processing research*
