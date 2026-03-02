@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software or the associated research, please cite it as below."
+authors:
+  - family-names: "Rabby"
+    given-names: "Fazlay"
+  - family-names: "Das"
+    given-names: "Rajdeep"
+  - family-names: "Rahman"
+    given-names: "Md. Musfiqur"
+  - family-names: "Hossain"
+    given-names: "Md. Hridoy"
+  - family-names: "Aknda"
+    given-names: "Md. Rifat"
+title: "Scalable Hand Gesture Recognition from Surface Electromyography (sEMG) Signals Using a Hybrid Deep Learning Model Evaluated on Diverse Datasets"
+version: 1.0.0
+doi: 10.1109/ICEEIE66203.2025.11252161
+date-released: 2025-09-01
+url: "https://github.com/fazlayofficial/Evo-Extractor-myo-raw-emg-extractor"
+preferred-citation:
+  type: conference-paper
+  authors:
+    - family-names: "Rabby"
+      given-names: "Fazlay"
+    - family-names: "Das"
+      given-names: "Rajdeep"
+    - family-names: "Rahman"
+      given-names: "Md. Musfiqur"
+    - family-names: "Hossain"
+      given-names: "Md. Hridoy"
+    - family-names: "Aknda"
+      given-names: "Md. Rifat"
+  title: "Scalable Hand Gesture Recognition from Surface Electromyography (sEMG) Signals Using a Hybrid Deep Learning Model Evaluated on Diverse Datasets"
+  collection-title: "2025 9th International Conference On Electrical, Electronics And Information Engineering (ICEEIE)"
+  year: 2025
+  start: 1
+  end: 6
+  publisher:
+    name: "IEEE"
